@@ -1,0 +1,15 @@
+.ThemeSelector{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    max-width: 1200px ;
+    margin : 20px auto  ;
+}
+.ThemeButtons div{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 15px ;
+    border-radius: 50%;
+}

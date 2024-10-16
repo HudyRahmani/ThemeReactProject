@@ -2,6 +2,8 @@ import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { ThemeContext } from "../context.js/ThemeContext";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../firebase/config";
 
 export default function CreateStore() {
   const [title, setTitle] = useState();
@@ -9,19 +11,18 @@ export default function CreateStore() {
   const [number, setNumber] = useState();
 
   const navigate = useNavigate()
-  const data = { title, name, number };
+  const doc = { title, name, number };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    
-    axios.post("http://localhost:3000/products", data)
-      .then((response) => {
-        console.log("Data sent successfully:", response.data);
-        navigate('/')
-      })
-      .catch((error) => {
-        console.error("There was an error posting the data!", error);
-      });
+    try {
+     
+      const ref = collection(db , 'Computer')
+      await addDoc(ref , doc)
+      navigate('/')
+    }catch (err) {
+      console.log('error')
+    }
   };
 
   const {mode} = useContext(ThemeContext)

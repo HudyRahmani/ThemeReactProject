@@ -1,6 +1,7 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { ThemeContext } from "../context.js/ThemeContext";
 
 export default function CreateStore() {
   const [title, setTitle] = useState();
@@ -23,9 +24,11 @@ export default function CreateStore() {
       });
   };
 
+  const {mode} = useContext(ThemeContext)
+
   return (
-    <div className="container col-lg-6 col-md-8 col-sm-12 mt-5 bg-light p-5 rounded-5">
-      <form onSubmit={handleSubmit}>
+    <div className={`container col-lg-6 col-md-8 col-sm-12 mt-5 shadow-lg p-5 rounded-5 cart ${mode} `}>
+      <form onSubmit={handleSubmit} className={`cart ${mode}`}>
         <h3 className="form-label">Entry Your Information...</h3>
         <div className="mb-3">
           <label className="form-label">Title</label>

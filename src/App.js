@@ -8,10 +8,13 @@ import StoreList from "./components/StoreList";
 import CreateStore from "./components/CreateStore";
 import Search from "./components/Search";
 import ThemeSelector from "./components/ThemeSelector";
+import { useContext } from "react";
+import { ThemeContext } from "./context.js/ThemeContext";
 
 function App() {
+  const {mode} = useContext(ThemeContext)
   return (
-    <div className="App">
+    <div className={`App ${mode}`}>
       <BrowserRouter>
         <Navbar />
         <ThemeSelector />

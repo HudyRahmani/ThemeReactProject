@@ -1,16 +1,19 @@
 import { Link, useParams } from "react-router-dom";
 import { FetchData } from "../hook/FetchData";
+import { useContext } from "react";
+import { ThemeContext } from "../context.js/ThemeContext";
 
 export default function Store() {
   const { id } = useParams();
   const url = "http://localhost:3000/products/"+id;
   const { data } = FetchData(url);
+  const {mode} = useContext(ThemeContext)
 
   return (
     <div className="container">
       <div className="row justify-content-center ">
         
-        {data && <div key={data.id}  className="card shadow-lg   m-4 p-0" >
+        {data && <div key={data.id}  className={`card shadow-lg  m-4 p-0 cart ${mode}`} >
               <div className="card-header">{data.title}</div>
               <div className="card-body">
                 <p className="card-text">{data.name}</p>
